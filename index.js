@@ -124,26 +124,42 @@ let properties = [
   },
 ];
 
-const forSaleContainer = document.getElementById("boxes");
+const propertiesTable = document.querySelector("#propertiesbox");
 function showProperties() {
-  forSaleContainer.innerHTML = "";
+  document.querySelector("#propertiesbox").innerHTML = "";
   properties.forEach((property) => {
-    forSaleContainer.innerHTML += `
-        <div class="card shadow mb-4">
-          <img src=${property.image} class="car-img mb-4 img-fluid" alt="Picture of Property" />
-          <h5 class="text-black">${property.title}</h5>
-          <p class="text-secondary">
-            ${property.location}
-          </p>
-          <p>${property.price}</p>
-          <div class="d-flex flex-row justify-content-center">
-            <i class="fa-solid fa-bed me-2"></i>${property.bedrooms}
-            <i class="fa-solid fa-shower me-2 ms-2"></i>${property.bathrooms}
-            <i class="fa-solid fa-car me-2 ms-2"></i>${property.carspace}
-            <i class="fa-solid fa-person me-2 ms-2"></i>${property.population}
-          </div>
-          <p class="mt-2">${property.type}</p>
-            `;
+    propertiesTable.innerHTML += `
+        <tr class="d-flex flex-row">
+          <td><img src=${property.image}></td>
+          <td>${property.title}</td>
+          <td>${property.location}</td>
+          <td>${property.type}</td>
+          <td>${property.bedrooms}</td>
+          <td>${property.bathrooms}</td>
+          <td>${property.carspace}</td>
+          <td>${property.population}</td>
+          <td>${property.price}</td>
+          <td><button onclick="deleteproperty(${property.id})" ><i class="fa-solid fa-trash"></i></button></td>
+          <td><button onclick="editproperty(${property.id})"><i class="fa-solid fa-pen-to-square"></i></button></td>
+        <tr>
+      `;
   });
 }
 showProperties();
+
+showProperties(properties);
+function deleteProperties(id) {
+  properties = properties.filter((listing) => {
+    //Goes through the array and filters out every id that is equal to the selected one
+    return property.id !== id; //Returns all objects in the array that is not the same id as the selected one
+  });
+  localStorage.setItem("properties", JSON.stringify(properties));
+  showProperties(properties); //Displays the array
+}
+function editproperty(id) {
+  let property = property.find((property) => property.id === id); //Finds the id of button that was clicked
+  let input = prompt("Input Changes"); //Allows the user to input their own changes
+  property.title = input; //Changes the content to what the user's input
+  localStorage.setItem("properties", JSON.stringify(properties));
+  showProperties(properties); //Displays the array
+}
