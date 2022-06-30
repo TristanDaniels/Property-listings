@@ -54,7 +54,7 @@ let properties = JSON.parse(localStorage.getItem("properties"))
         city: "Pretoria",
         price: "R950 000",
         value: "R900 000 - R1 499 999",
-        bedrooms: "4",
+        bedrooms: "3",
         bathrooms: "2",
         carspace: "4",
         population: "8",

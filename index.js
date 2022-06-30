@@ -46,7 +46,7 @@ let properties = JSON.parse(localStorage.getItem("properties"))
         type: "House",
         location: "77 Bananna Ave, Pretoria, 5200, Gauteng, South Africa",
         price: "R950 000",
-        bedrooms: "4",
+        bedrooms: "3",
         bathrooms: "2",
         carspace: "4",
         population: "8",
